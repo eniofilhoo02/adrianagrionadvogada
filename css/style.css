@@ -223,7 +223,9 @@ body.menu-aberto .topo { background: transparent; box-shadow: none; backdrop-fil
 .hero__simbolo { --bh: clamp(250px, 37svh, 360px); order: -1; position: relative; display: grid; place-items: center; height: var(--bh); }
 .hero__texto { position: relative; }
 
-.hero__id { display: flex; align-items: center; gap: .9rem; margin-bottom: 1.4rem; }
+.hero__id { margin-bottom: clamp(1.4rem, 2.4vw, 2rem); }
+.hero__nome { display: block; width: clamp(260px, 36vw, 520px); height: auto; }
+.hero__id .hero__cargo { margin-top: .9rem; }
 .regua { width: 40px; height: 1px; background: var(--ouro); flex: none; }
 .hero__cargo { font-size: .72rem; font-weight: 400; letter-spacing: .3em; text-transform: uppercase; color: var(--ouro-suave); }
 
@@ -415,12 +417,22 @@ html.anim .faixas:hover .faixa__trilho, html.anim .faixas:focus-within .faixa__t
   .mapa { height: clamp(420px, 38vw, 540px); }
 }
 
-/* ---------- 7. Atendimento ---------- */
-.modos { display: grid; gap: 0 2.5rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
-.modo h3 { font-family: var(--f-display); font-weight: 500; font-size: 1.2rem; line-height: 1.25; color: var(--noite); }
-.modo p { margin-top: .6rem; color: var(--tinta-suave); max-width: 24em; }
-.ate__nota { margin-top: 2.5rem; font-size: 1.05rem; }
-@media (min-width: 860px) { .modos { grid-template-columns: repeat(3, 1fr); } }
+/* ---------- 6. Atendimento (virtual em destaque) ---------- */
+.ate__grade { display: grid; gap: 1.75rem; margin-top: clamp(2.5rem, 5vw, 4rem); }
+.virtual {
+  position: relative; padding: clamp(1.8rem, 4vw, 3rem); color: rgba(233, 230, 223, .85);
+  background: radial-gradient(90% 120% at 0% 0%, rgba(216, 186, 114, .16), transparent 60%), var(--noite-2);
+  border: 1px solid var(--ouro);
+}
+.virtual__ico { width: 3.2rem; height: 3.2rem; color: var(--ouro-claro); }
+.virtual h3 { margin-top: 1.2rem; font-family: var(--f-display); font-weight: 500; font-size: clamp(1.45rem, 1.1rem + 1.4vw, 2.1rem); line-height: 1.2; color: #FAF7F0; text-wrap: balance; }
+.virtual p { margin-top: 1rem; max-width: 34em; font-size: 1.05rem; line-height: 1.7; }
+.virtual .btn { margin-top: 1.8rem; }
+.ate__lado { display: grid; gap: 1.75rem; align-content: start; }
+.ate .modo::before { background: rgba(255, 255, 255, .16); }
+.ate .modo h3 { font-family: var(--f-display); font-weight: 500; font-size: 1.2rem; line-height: 1.25; color: #FAF7F0; }
+.ate .modo p { margin-top: .6rem; max-width: 24em; color: rgba(233, 230, 223, .7); }
+@media (min-width: 900px) { .ate__grade { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; } }
 
 /* ---------- 8. CTA final ---------- */
 .fim { overflow: hidden; text-align: center; padding-block: clamp(5.5rem, 3rem + 10vw, 11rem); }
@@ -479,12 +491,7 @@ html.anim .faixas:hover .faixa__trilho, html.anim .faixas:focus-within .faixa__t
 .anim [data-reveal="linha"] > * { opacity: 0; transform: translateY(14px); }
 .anim .passos__fio { --p: 0; }
 .anim .passo { opacity: 0; transform: translateY(18px); }
-.anim .hero__id, .anim .hero__lead, .anim .hero__acoes, .anim .hero__faixa, .anim .balanca, .anim .brilho, .anim .topo__barra { opacity: 0; }
+.anim .hero__id, .anim .hero__lead, .anim .hero__acoes, .anim .balanca, .anim .brilho, .anim .topo__barra { opacity: 0; }
 .anim .arco { stroke-dasharray: 1; stroke-dashoffset: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
-}
 
 .emo { display: inline-block; width: 1.5em; font-style: normal; }

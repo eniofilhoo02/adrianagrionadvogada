@@ -5,7 +5,8 @@
   'use strict';
 
   var root = document.documentElement;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var RESPEITAR_MOVIMENTO_REDUZIDO = false; /* ver index.html */
+  var reduce = RESPEITAR_MOVIMENTO_REDUZIDO && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function falhou() { root.classList.remove('anim'); }
 
@@ -187,7 +188,9 @@
       .fromTo('.balanca', { autoAlpha: 0, scale: .93 }, { autoAlpha: 1, scale: 1, duration: 1.8 }, .15)
       .to('.arco--1', { strokeDashoffset: 0, duration: 2.6, ease: 'power2.inOut' }, .2)
       .to('.arco--2', { strokeDashoffset: 0, duration: 2.8, ease: 'power2.inOut' }, .45)
-      .fromTo('.hero__id', { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: .9 }, .35);
+      .fromTo('.hero__id', { autoAlpha: 0 }, { autoAlpha: 1, duration: .6 }, .3)
+      .fromTo('.hero__nome', { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.5, ease: 'power3.inOut' }, .35)
+      .fromTo('.hero__cargo', { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: .8 }, 1.2);
 
     var titulo = document.querySelector('.hero__titulo');
     if (window.SplitText) {
@@ -202,8 +205,7 @@
       gsap.set(titulo, { visibility: 'visible' });
     }
 
-    tl.fromTo(['.hero__lead', '.hero__acoes'], { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: .9, stagger: .12 }, 1.0)
-      .fromTo('.hero__faixa', { autoAlpha: 0 }, { autoAlpha: 1, duration: 1 }, 1.4);
+    tl.fromTo(['.hero__lead', '.hero__acoes'], { autoAlpha: 0, y: 16 }, { autoAlpha: 1, y: 0, duration: .9, stagger: .12 }, 1.0);
   }
 
   /* ---------- Áreas de atuação: cards em faixa contínua ---------- */
